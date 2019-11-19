@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://js.stripe.com/v3"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -282,11 +283,19 @@ body, html {
         <li class="w3-padding-16">Influence NP agenda through annual questionnaire</li>
         <li class="w3-padding-16">Invitation to all NP events</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 25</h2>
+          <h2 class="w3-wide">$ 10</h2>
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <a href="https://stripe.com/" target="_blank"><button class="w3-button w3-blue w3-padding-large">Sign Up</button></a>
+            <button
+            class="w3-button w3-blue w3-padding-large"
+            id="checkout-button-every-1-month-1000-usd"
+            role="link"
+          >
+            Checkout
+          </button>
+          <div id="error-message"></div>
+
         </li>
       </ul>
     </div>
@@ -302,7 +311,17 @@ body, html {
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <a href="https://stripe.com/" target="_blank"><button class="w3-button w3-blue w3-padding-large">Sign Up</button></a>
+            <a>
+                <button
+                class="w3-button w3-blue w3-padding-large"
+                id="checkout-button-every-1-month-2500-usd"
+                role="link"
+              >
+                Sign Up!  
+              </button>
+              </a>
+          <div id="error-message"></div>
+
         </li>
       </ul>
     </div>
@@ -314,11 +333,19 @@ body, html {
         <li class="w3-padding-16">Influence NP agenda through annual questionnaire</li>
         <li class="w3-padding-16">Invitation to all Northland Progress events</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 150</h2>
+          <h2 class="w3-wide">$ 35</h2>
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <a href="https://stripe.com/" target="_blank"><button class="w3-button w3-blue w3-padding-large">Sign Up</button></a>
+            <button
+            class="w3-button w3-blue w3-padding-large"
+            id="checkout-button-membertype_1-every-1-year-3500-usd"
+            role="link"
+          >
+            Checkout
+          </button>
+          
+          <div id="error-message"></div>        
         </li>
       </ul>
     </div>
@@ -330,12 +357,19 @@ body, html {
         <li class="w3-padding-16">Influence NP agenda through annual questionnaire</li>
         <li class="w3-padding-16">Invitation to all NP events</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 500</h2>
+          <h2 class="w3-wide">$ 50</h2>
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <a href="https://stripe.com/" target="_blank"><button class="w3-button w3-blue w3-padding-large">Sign Up</button></a>
-        </li>
+            <a>
+                <button class="w3-button w3-blue w3-padding-large"
+                id="checkout-button-membertype_1-every-1-year-5000-usd"
+                role="link">
+                Sign Up!
+              </button>
+            </a>
+            <div id="error-message"></div>        
+          </li>
       </ul>
     </div>
   </div>
@@ -494,4 +528,107 @@ function w3_close() {
 </script>
 
 </body>
+<script>
+    (function() {
+      var stripe = Stripe('pk_live_Xt6sb3txjkheT7UThvAuUM2d');
+    
+      var checkoutButton50 = document.getElementById('checkout-button-membertype_1-every-1-year-5000-usd');
+      checkoutButton50.addEventListener('click', function () {
+        // When the customer clicks on the button, redirect
+        // them to Checkout.
+        stripe.redirectToCheckout({
+          items: [{plan: 'membertype_1-every-1-year-5000-usd', quantity: 1}],
+    
+          // Do not rely on the redirect to the successUrl for fulfilling
+          // purchases, customers may not always reach the success_url after
+          // a successful payment.
+          // Instead use one of the strategies described in
+          // https://stripe.com/docs/payments/checkout/fulfillment
+          successUrl: 'http://northlandprogress.org/success',
+          cancelUrl: 'http://northlandprogress.org/canceled',
+        })
+        .then(function (result) {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            var displayError = document.getElementById('error-message');
+            displayError.textContent = result.error.message;
+          }
+        });
+      });
+      var checkoutButton10 = document.getElementById('checkout-button-every-1-month-1000-usd');
+      checkoutButton10.addEventListener('click', function () {
+        // When the customer clicks on the button, redirect
+        // them to Checkout.
+        stripe.redirectToCheckout({
+          items: [{plan: 'every-1-month-1000-usd', quantity: 1}],
+    
+          // Do not rely on the redirect to the successUrl for fulfilling
+          // purchases, customers may not always reach the success_url after
+          // a successful payment.
+          // Instead use one of the strategies described in
+          // https://stripe.com/docs/payments/checkout/fulfillment
+          successUrl: 'http://northlandprogress.org/success',
+          cancelUrl: 'http://northlandprogress.org/canceled',
+        })
+        .then(function (result) {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            var displayError = document.getElementById('error-message');
+            displayError.textContent = result.error.message;
+          }
+        });
+      });
+      var checkoutButton25 = document.getElementById('checkout-button-every-1-month-2500-usd');
+      checkoutButton25.addEventListener('click', function () {
+        // When the customer clicks on the button, redirect
+        // them to Checkout.
+        stripe.redirectToCheckout({
+          items: [{plan: 'every-1-month-2500-usd', quantity: 1}],
+    
+          // Do not rely on the redirect to the successUrl for fulfilling
+          // purchases, customers may not always reach the success_url after
+          // a successful payment.
+          // Instead use one of the strategies described in
+          // https://stripe.com/docs/payments/checkout/fulfillment
+          successUrl: 'http://northlandprogress.org/success',
+          cancelUrl: 'http://northlandprogress.org/canceled',
+        })
+        .then(function (result) {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            var displayError = document.getElementById('error-message');
+            displayError.textContent = result.error.message;
+          }
+        });
+      });
+      var checkoutButton35 = document.getElementById('checkout-button-membertype_1-every-1-year-3500-usd');
+      checkoutButton35.addEventListener('click', function () {
+        // When the customer clicks on the button, redirect
+        // them to Checkout.
+        stripe.redirectToCheckout({
+          items: [{plan: 'membertype_1-every-1-year-3500-usd', quantity: 1}],
+    
+          // Do not rely on the redirect to the successUrl for fulfilling
+          // purchases, customers may not always reach the success_url after
+          // a successful payment.
+          // Instead use one of the strategies described in
+          // https://stripe.com/docs/payments/checkout/fulfillment
+          successUrl: 'http://northlandprogress.org/success',
+          cancelUrl: 'http://northlandprogress.org/canceled',
+        })
+        .then(function (result) {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            var displayError = document.getElementById('error-message');
+            displayError.textContent = result.error.message;
+          }
+        });
+      });
+    })();
+
+    </script>
 </html>
