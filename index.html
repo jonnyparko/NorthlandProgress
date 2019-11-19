@@ -287,6 +287,7 @@ body, html {
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
+          <a>
             <button
             class="w3-button w3-blue w3-padding-large"
             id="checkout-button-plan_GClpDDI6aAl422"
@@ -294,6 +295,7 @@ body, html {
           >
             Sign Up!
           </button>
+        </a>
           <div id="error-message"></div>
 
         </li>
@@ -337,14 +339,15 @@ body, html {
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
+          <a>
             <button
             class="w3-button w3-blue w3-padding-large"
-            id="checkout-button-membertype_1-every-1-year-5000-usd"
+            id="checkout-button-every-1-month-5000-usd"
             role="link"
           >
             Checkout
           </button>
-          
+          </a>
           <div id="error-message"></div>        
         </li>
       </ul>
@@ -604,7 +607,7 @@ function w3_close() {
           }
         });
       });
-      var checkoutButton35 = document.getElementById('checkout-button-membertype_1-every-1-year-3500-usd');
+      var checkoutButton35 = document.getElementById('checkout-button-every-1-month-3500-usd');
       checkoutButton35.addEventListener('click', function () {
         // When the customer clicks on the button, redirect
         // them to Checkout.
