@@ -580,8 +580,8 @@ function w3_close() {
           }
         });
       });
-      var checkoutButton25 = document.getElementById('checkout-button-plan_GClpDDI6aAl422');
-      checkoutButton25.addEventListener('click', function () {
+      var checkoutButton50 = document.getElementById('checkout-button-plan_GClpDDI6aAl422');
+      checkoutButton50.addEventListener('click', function () {
         // When the customer clicks on the button, redirect
         // them to Checkout.
         stripe.redirectToCheckout({
@@ -604,12 +604,12 @@ function w3_close() {
           }
         });
       });
-      var checkoutButton25 = document.getElementById('checkout-button-every-1-month-2500-usd');
+      var checkoutButton25 = document.getElementById('checkout-button-plan_GClpDDI6aAl422');
       checkoutButton25.addEventListener('click', function () {
         // When the customer clicks on the button, redirect
         // them to Checkout.
         stripe.redirectToCheckout({
-          items: [{plan: 'every-1-month-2500-usd', quantity: 1}],
+          items: [{plan: 'plan_GClpDDI6aAl422', quantity: 1}],
     
           // Do not rely on the redirect to the successUrl for fulfilling
           // purchases, customers may not always reach the success_url after
