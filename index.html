@@ -564,7 +564,7 @@ function w3_close() {
         // When the customer clicks on the button, redirect
         // them to Checkout.
         stripe.redirectToCheckout({
-          items: [{plan: 'every-1-month-5000-usd', quantity: 1}],
+          items: [{plan: 'membertype_1-every-1-year-5000-usd', quantity: 1}],
     
           // Do not rely on the redirect to the successUrl for fulfilling
           // purchases, customers may not always reach the success_url after
