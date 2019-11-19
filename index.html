@@ -283,16 +283,16 @@ body, html {
         <li class="w3-padding-16">Influence NP agenda through annual questionnaire</li>
         <li class="w3-padding-16">Invitation to all NP events</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 10</h2>
+          <h2 class="w3-wide">$ 25</h2>
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
             <button
             class="w3-button w3-blue w3-padding-large"
-            id="checkout-button-every-1-month-1000-usd"
+            id="checkout-button-plan_GClpDDI6aAl422"
             role="link"
           >
-            Checkout
+            Sign Up!
           </button>
           <div id="error-message"></div>
 
@@ -307,14 +307,14 @@ body, html {
         <li class="w3-padding-16">Influence NP agenda through annual questionnaire</li>
         <li class="w3-padding-16">Invitation to all NP events</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 50</h2>
+          <h2 class="w3-wide">$ 35</h2>
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
             <a>
                 <button
                 class="w3-button w3-blue w3-padding-large"
-                id="checkout-button-every-1-month-2500-usd"
+                id="checkout-button-every-1-month-3500-usd"
                 role="link"
               >
                 Sign Up!  
@@ -333,13 +333,13 @@ body, html {
         <li class="w3-padding-16">Influence NP agenda through annual questionnaire</li>
         <li class="w3-padding-16">Invitation to all Northland Progress events</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 35</h2>
+          <h2 class="w3-wide">$ 50</h2>
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
             <button
             class="w3-button w3-blue w3-padding-large"
-            id="checkout-button-membertype_1-every-1-year-3500-usd"
+            id="checkout-button-membertype_1-every-1-year-5000-usd"
             role="link"
           >
             Checkout
@@ -357,13 +357,13 @@ body, html {
         <li class="w3-padding-16">Influence NP agenda through annual questionnaire</li>
         <li class="w3-padding-16">Invitation to all NP events</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">$ 50</h2>
+          <h2 class="w3-wide">$ 250</h2>
           <span class="w3-opacity">per year</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
             <a>
                 <button class="w3-button w3-blue w3-padding-large"
-                id="checkout-button-membertype_1-every-1-year-5000-usd"
+                id="checkout-button-plan_GCle4xVMVJb1O4"
                 role="link">
                 Sign Up!
               </button>
@@ -532,12 +532,12 @@ function w3_close() {
     (function() {
       var stripe = Stripe('pk_live_Xt6sb3txjkheT7UThvAuUM2d');
     
-      var checkoutButton50 = document.getElementById('checkout-button-membertype_1-every-1-year-5000-usd');
-      checkoutButton50.addEventListener('click', function () {
+      var checkoutButton250 = document.getElementById('checkout-button-plan_GCle4xVMVJb1O4');
+      checkoutButton250.addEventListener('click', function () {
         // When the customer clicks on the button, redirect
         // them to Checkout.
         stripe.redirectToCheckout({
-          items: [{plan: 'membertype_1-every-1-year-5000-usd', quantity: 1}],
+          items: [{plan: 'plan_GCle4xVMVJb1O4', quantity: 1}],
     
           // Do not rely on the redirect to the successUrl for fulfilling
           // purchases, customers may not always reach the success_url after
@@ -556,12 +556,36 @@ function w3_close() {
           }
         });
       });
-      var checkoutButton10 = document.getElementById('checkout-button-every-1-month-1000-usd');
-      checkoutButton10.addEventListener('click', function () {
+      var checkoutButton50 = document.getElementById('checkout-button-every-1-month-5000-usd');
+      checkoutButton50.addEventListener('click', function () {
         // When the customer clicks on the button, redirect
         // them to Checkout.
         stripe.redirectToCheckout({
-          items: [{plan: 'every-1-month-1000-usd', quantity: 1}],
+          items: [{plan: 'every-1-month-5000-usd', quantity: 1}],
+    
+          // Do not rely on the redirect to the successUrl for fulfilling
+          // purchases, customers may not always reach the success_url after
+          // a successful payment.
+          // Instead use one of the strategies described in
+          // https://stripe.com/docs/payments/checkout/fulfillment
+          successUrl: 'http://northlandprogress.org/success',
+          cancelUrl: 'http://northlandprogress.org/canceled',
+        })
+        .then(function (result) {
+          if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer.
+            var displayError = document.getElementById('error-message');
+            displayError.textContent = result.error.message;
+          }
+        });
+      });
+      var checkoutButton25 = document.getElementById('checkout-button-plan_GClpDDI6aAl422');
+      checkoutButton25.addEventListener('click', function () {
+        // When the customer clicks on the button, redirect
+        // them to Checkout.
+        stripe.redirectToCheckout({
+          items: [{plan: 'every-1-month-5000-usd', quantity: 1}],
     
           // Do not rely on the redirect to the successUrl for fulfilling
           // purchases, customers may not always reach the success_url after
